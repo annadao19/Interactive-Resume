@@ -14,29 +14,15 @@ var map = new mapboxgl.Map({
 });
 
 var currentArea = 0;
+let data;
 let locations;
-// var locations = {
-//   'BLS': {coords: [-71.1015, 42.3375978], bearing: 90, zoom: 17, pitch: 55, url: "https://bls.org/ourpages/auto/2019/9/4/66794908/bls%20seal.jpg", link: "https://bls.org", name: 'BLS', location: 'Boston1', description: 'I went to highschool at Boston Latin School, where I was given a rigorous education that prepared me well for College and life.'}, 
-//   'Setti Warren Campaign': {coords: [-71.06619595160484, 42.33898820105475], bearing: -50, zoom: 19, pitch: 60, url: "https://settiwarren.com/wp-content/uploads/2017/05/setti_logo.png", link: "https://settiwarren.com/", name: 'Setti Warren Campaign', location: 'Boston1', description: 'On this job, I spent most of my time organizing and campaigning, and it is here that I first fell in love with Political Science.'}, 
-//   'State Street': {coords: [-71.055902, 42.35394], bearing: 59, zoom: 16, pitch: 75, url: "https://www.ywboston.org/wp-content/uploads/2016/01/State-Street-Logo.jpg", link: "https://www.statestreet.com/home.html", name: 'State Street', location: 'Boston1', description: "This was my first taste of Legal work, and although my job wasn't especially influential, being in the space of lawyers, watching them work and hearing how they think, led me to find a deep interest in Legal Studies."},
-//   'CICS': {coords: [-72.5310239, 42.3947133], bearing: -60, zoom: 17.5, pitch: 50, url: "https://www.cics.umass.edu/sites/default/files/styles/large/public/cics_wordmark.jpg?itok=K4BEaQ43", link: "https://www.cics.umass.edu/diversity", name: 'CICS', location: 'UMA', description: 'As the Assistant Editor for the CICS Diversity newsletter, my job is to interview students, faculty and staff from the Computer Science department on how diversity affects them, and write a spotlight on them for the newsletter. I have not only gained many skills in communication and writing, but I have also found an incredible community.'},
-//   'UMass Campus Center': {coords: [-72.5281879, 42.3911411], bearing: 100, zoom: 16, pitch: 60, url: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/University_of_Massachusetts_Amherst_seal.svg/1200px-University_of_Massachusetts_Amherst_seal.svg.png", link: "http://umass.edu/", name: 'UMass Campus Center', location: 'UMA', description: "At UMass, I have contributed to the <a href='https://dailycollegian.com/staff_name/anna-dao/' target='_blank'>Daily Collegian</a> and <a href='https://www.hercampus.com/author/anna-dao' target='_blank'>HerCampus</a> newspapers, based in the Campus Center. These newspapers have given me the chance to share my opinion on serious topics, as well as lighter ones."},
-//   'Caffe Nero': {coords: [-71.1029304, 42.3650673], bearing: 50, zoom: 19, pitch: 60, url: "https://assets.simon.com/tenantlogos/28697.png", link: "https://caffenero.com/us/", name: 'Caffe Nero', location: 'Boston1', description: "Caffe Nero was a job I took in order to make sure I got customer service experience before going off to college, and it worked exceptionally in helping me hone my communication and socialization skills."}
-// };
-
 let arrowLocations;
-// var arrowLocations = [
-//   {coords: [-71.869, 42.331], bearing: 0, zoom: 8, pitch: 0, name: 'MA', description: 'Thanks for checking out my interactive resume! Feel free to do it again, just press the arrow.'}, 
-//   {coords: [-71.0789, 42.3501], bearing: 100, zoom: 12.5, pitch: 0, name: 'Boston1', description: 'I grew up in Boston where I had a number of jobs, and I learned something at each one. <br><br>Click on the glowing icons on the map to learn more about my time at my different places of work.'}, 
-//   {coords: [-72.5272402, 42.3907598], bearing: -105, zoom: 15, pitch: 0, name: 'UMA', description: "I'm currently attending UMass Amherst, where I am studying Legal Studies and exploring Sociology, Journalism, and Political Science.<br><br> Check out some of the things that I do around Campus."},
-//   {coords: [-71.0789, 42.3501], bearing: 100, zoom: 12.5, pitch: 0, name: 'Boston2', description: "Now I'm back in Boston where I'm living with friends and working hard.<br><br>Check out the stuff I'm working on in the city!"}, 
-// ]
 
 map.getCanvas().style.cursor = 'default';
 
 map.on("load", () => {
   // Add GeoJSON buildings to the map
-  let data = {
+  data = {
     "type": "FeatureCollection",
     "features": [
       {
