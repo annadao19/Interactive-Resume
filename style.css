@@ -1,0 +1,391 @@
+body {
+    overflow: hidden;
+}
+
+.invisible {
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+}
+
+/***********/
+/* MAP CSS */
+/***********/
+
+#map{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    cursor: pointer !important;
+    z-index: -5;
+}
+/* .popup{
+    padding: 0;
+    width: 120px;
+    height: 120px;
+    opacity: 0%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .3s;
+}
+.popup:hover{
+    opacity: 100%;
+}
+.popup a{
+    border: none;
+    outline: none;
+}
+.popup a:hover{
+    border: none;
+    outline: none;
+} */
+/* .popup .mapboxgl-popup-content{
+    position: absolute;
+    width: 100%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.popup .mapboxgl-popup-tip{
+    position: relative;
+    transform: translateY(58px);
+} */
+/* .popup img{
+    width: 100%;
+    height: 100%;
+    transform: translateY(5px);
+} */
+.button-wrap {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: absolute;
+    animation: slide-in 1s ease-out forwards;
+}
+@keyframes slide-in {
+    from { transform: rotate(360deg); bottom: -200px; right: -200px; }
+    to { transform: rotate(0deg); bottom: 140px; right: 140px; }
+}
+.point-down {
+    transform: rotate(90deg);
+}
+.button-wrap div{
+    position: absolute;
+}
+.line {
+    content: '';
+    position: absolute;
+    width: 170px;
+    height: 40px;
+    background: gray;
+    z-index: -1;
+    transition: transform .4s ease-out;
+    transform: rotate(30deg);
+}
+.bg {
+    background: #e75480;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    z-index: -3;
+    transition: all .4s ease-out;
+}
+.circle {
+    width: 150px;
+    height: 150px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .4s ease-out;
+}
+.circle::after {
+    content: '';
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #ccc;
+    transition: all .4s ease-out;
+}
+.circle:hover ~ .line{
+    transform: translate(-10px, -10px) rotate(210deg);
+}
+.circle:hover ~ .bg{
+    transform: translate(-10px, -10px);
+}
+.circle:hover {
+    background: white;
+    transform: translate(-10px, -10px);
+}
+.circle:hover::after {
+    
+    box-shadow: 0 0 0 10px white,
+      10px 10px 0 9px #e75480;
+}
+.circle:active {
+    transition: all .1s linear;
+    transform: translate(0px, 0px);
+}
+.circle:active ~ .line {
+    transition: transform .1s linear;
+    transform: translate(0px, 0px) rotate(210deg);
+}
+.circle:active ~ .bg {
+    transition: transform .1s linear;
+    transform: translate(0px, 0px);
+}
+.circle:active::after {
+    transition: all .1s linear;
+    box-shadow: 0 0 0 10px white,
+      0px 0px 0 9px #e75480;
+}
+.arrow {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 40px solid #e75480;
+    transform: translateX(15px);
+}
+.arrow::before {
+    position: absolute;
+    content: '';
+    background: #e75480;
+    width: 30px;
+    height: 20px;
+    left: -70px;
+    top: -10px;
+}
+
+/************/
+/* PAGE CSS */
+/************/
+
+#menu {
+    position: absolute;
+    left: 0;
+    width: 25%;
+    top: 0;
+    bottom: 0;
+    /* background: #DDFFDD; */
+    font-family: 'Courier New', Courier, monospace;
+    /* font-size: 40px; */
+    padding-left: 10px;
+    font-weight: 400;
+    /* box-shadow: 10px 0 50px 50px #DDFFDD; */
+    display: flex;
+    justify-content: center;
+}
+
+#text-bubble {
+    background: white;
+    width: 100%;
+    margin: 20px;
+    height: calc(100vh - 250px);
+    position: relative;
+    border-radius: 15px;
+    overflow: wrap;
+    padding: 10px;
+    animation: fade 1s ease-out 2s forwards;
+}
+#text-bubble::after {
+    position: absolute;
+    content: '';
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid white;
+    left: calc(50% - 25px);
+    bottom: -20px;
+}
+
+.text {
+    position: relative;
+    font-family: monospace;
+    font-size: 20px !important;
+}
+.fader {
+    transition: opacity 1s, transform 1s;
+}
+.fade-out {
+    transform: translateY(-10px);
+    opacity: 0;
+}
+/* .fade-in {
+    animation: fade 1s ease-out forwards !important;
+}
+.fade-out {
+    animation: fade 1s ease-out reverse !important;
+} */
+
+/*************/
+/* CUTIE CSS */
+/*************/
+
+.anna {
+    bottom: -50px;
+    left: 50%;
+    animation: annamation 1s cubic-bezier(0.5, 0.5, 0.4, 1.4) 1s forwards;
+}
+@keyframes annamation {
+    0% { bottom: -50px; }
+    100% { bottom: 120px; }
+}
+.anna, .anna * {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hair{
+    /* background: #111; */
+    background: black;
+    /* background: linear-gradient(#000, #000, #dfc393); */
+    width: 100px;
+    height: 100px;
+    border-radius: 50px 50px 0 0;
+    overflow: hidden;
+}
+.skin{
+    background: #E0AC69;
+}
+.skin-dark{
+    background: #C08C49;
+}
+.neck{
+    width: 20px;
+    height: 120px;
+    top: 40
+}
+.head{
+    width: 80px;
+    height: 90px;
+    border-radius: 50%;
+}
+.bangs{
+    top: -45px;
+}
+.bang{
+    width: 100px;
+    height: 100px;
+    border-radius: 0 0 50% 50%;
+    background: #111;
+    display: inline-block;
+    position: relative;
+}
+.glasses{
+    top: 45px;
+}
+.lense{
+    position: relative;
+    width: 20px;
+    height: 15px;
+    border-radius: 4px;
+    box-shadow: 
+      0 0 0 5px black;
+}
+.bridge{
+    width: 15px;
+    height: 4px;
+    background: black;
+    position: relative;
+}
+.mouth{
+    background: white;
+    width: 20px;
+    height: 10px;
+    border-radius: 0 0 10px 10px;
+    top: 75px;
+}
+.body{
+    background: teal;
+    width: 100px;
+    height: 100px;
+    top: 50px;
+    border-radius: 25px 25px 0 0;
+    overflow: hidden;
+}
+.neckline{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -10px;
+    box-shadow: 
+      0 0 0 5px #265b5f;
+}
+.arm{
+    width: 20px;
+    height: 200px;
+    top: 25px;
+    border-top: 5px solid #265b5f;
+}
+.arm1{
+    left: 0;
+}
+.arm2{
+    right: 0;
+}
+
+
+
+
+/***************/
+/* TRANSITIONS */
+/***************/
+
+/* Fade */
+/* Settings: ease-out, forward */
+/* @keyframes fade {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 100%; transform: translateY(0); }
+} */
+
+/* Typed */
+@keyframes type {
+  to { left: 100%; }
+}
+@keyframes blink {
+  to { background: transparent; }
+}
+/* Settings:
+"element"::before {
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: "backdrop color"; 
+  animation: type "x"s steps("num chars") forward;
+}
+"element"::after {
+  width: 0.125em;
+  background: black;
+  animation: typewriter "x"s steps("num chars") forward,
+  blink "y"ms steps("num chars") infinite;
+}
+*/
+
+.marker {
+    width: 20px;
+    height: 20px;
+    transition: width .3s ease-out, height .3s ease-out;
+    background-size: 100%;
+    cursor: pointer;
+    border-radius: 50%;
+    background-position: center;
+    animation: shine 1s linear alternate-reverse infinite;
+}
+.marker:hover {
+    width: 100px;
+    height: 100px;
+}
+@keyframes shine {
+    from { box-shadow: 0 0 5px 2px yellow; }
+    to { box-shadow: 0 0 20px 5px yellow; }
+}
